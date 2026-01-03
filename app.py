@@ -1,3 +1,13 @@
+import subprocess
+import sys
+
+# 서버가 라이브러리를 못 찾을 경우를 대비해 강제 설치 명령을 넣습니다.
+try:
+    from Bio import Entrez
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "biopython"])
+    from Bio import Entrez
+
 import streamlit as st
 from Bio import Entrez
 import pandas as pd
